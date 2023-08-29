@@ -1,0 +1,277 @@
+1. Take the hard-coded HTML for the Wizard card, bring it 
+   into index.js and then inject it back into its div with 
+   JavaScript.
+2. Do the same for Orc card. 
+
+3. Create Ojects for the characters
+4. Create a render function
+5. move objects to a seperate js file
+6.add an argument(data) to the render function which will be replaced by the object name
+7.destructure the properties within the object instead of calling data.name, etc..
+8.each character in the data.js is updated with a diceCount property
+
+9.  1. declare a let called diceHtml and initialize it with an empty 
+    string. 
+    2. Use a for loop to update diceHtml so that it contains the 
+    HTML for our dice. The number of dice needed is specificed in 
+    the diceCount property of the objects.
+    3. Each dice should have the following HTML: <div class="dice">6</div>
+    4. For now, each dice will display 6
+    5. Swap out the diceRoll variable for diceHtml in the template
+For this step im going to use the Array constructor directly instead of the for loop
+
+10. 1. Create a function called getDiceRollArray that uses a 
+    for loop to return an array of random numbers between 1-6. 
+    2  The function should have diceCount as a parameter and the 
+    array it returns should be diceCount length.
+    3  For testing purposes, call the function with a diceCount of 
+    3 and log out the result. 
+
+11. 1. Create a function called getDiceHtml. 
+    2. getDiceHtml should map over the array of dice rolls 
+    returned from getDiceRollArray to generate the html 
+    we need to render our dice with random values. This is 
+    the HTML: `<div class="dice">DICE VALUE HERE</div>`
+    3. Think about the parameters and arguments!
+    4. Down in render(), set diceHtml equals to our 
+    new getDiceHtml function. Remember to give it the argument
+    it needs. 
+    5. Delete any code we no longer need.
+
+12. 1. Create a new constructor function called Character which
+    takes our data as a paramenter.
+    2. Set up "this" for each of the 5 properties in our objects
+    (eg: this.health = data.health)
+I am going to use Object.assign instead this.health.. etc
+
+13. 1. Create a method called getCharacterHtml that performs the 
+    same tasks as our current renderCharacter function.
+    2. Create two new instances of Character. One for a hero, 
+    called "wizard", and one for a monster, called "orc". 
+    Render both of them on the page.
+    3. Delete both the old renderCharacter function and the two 
+    lines of code at the bottom of the page which invoke that 
+    function.
+
+14. 1. Add getDiceHtml function as a method of our character constructor
+    2. Make a small change to getCharacterHtml to make the app work again
+I removed the diceRoll property from the data since we are recreating it
+
+15. instead of setting the innerHTML from right here in the contructor,
+    make it so that we just return that literal string of HTML
+    This will break the app. Don't worry!
+
+16. 1. Make the wizard and orc render
+    2. Create one render() function that calls both wizard and orc 
+    so we can control when they render. 
+    3. call the function.
+
+17. 1.Create a new const called characterData and set it equals to an 
+    object which holds both our hero and monster objects. 
+    2.Think about how we access the data from our new object
+    when we set up new characters down at the very bottom of the app. 
+    3.See if you can work out what needs to change there to keep the 
+    app working.
+
+18. 1. Create a file called 'utils.js'.
+    2. Cut and paste the getDiceRollArray() function into it.
+    3. Decide if this should be a default or named export. Think
+    about this!!
+    4. Import back it into index.js
+
+19. 1. Create a file called 'utils.js'.
+    2. Cut and paste the getDiceRollArray() function into it.
+    3. Decide if this should be a default or named export. Think
+    about this!!
+    4. Import back it into index.js
+
+20. 1. Create a file called 'Character.js'
+    2. Cut and paste the constructor function into it.
+    3. Decide if this should be a default or named export. Think
+    about this!!
+    4. Import it into index.js
+    5. You will hit a problem! Solve the problem!
+
+21. 1. Set up a function called attack()
+    2. Wire up the attack button so when pressed, the 
+    function logs out 'attack button working!'
+    3. Do this without declaring any new variables
+
+22. 1. Make the attack button trigger a dice roll for both
+    wizard and orc (which method on the constructor does that??)
+    2. Make sure the new dice score shows in the app
+
+23. 1. Create a new function called getDicePlaceholderHtml.
+    2. Make getDicePlaceholderHtml return a new array of diceCount 
+    length.
+    3. Each element of the array should include this
+    line of HTML: `<div class="placeholder-dice"></div>`
+    4. Remember to deal with the commas!
+    5. Think: Where should this function live??
+
+24. 1. In the Character constructor, create a new 
+    property called "diceArray".
+    2. Set diceArray equal to whatever is returned
+    by the getDicePlaceholderHtml function (think 
+    what two things you need to do to make this work!!).
+    3. Instead of rendering diceHtml in the getCharacterHtml 
+    method, render diceArray.
+    4. Delete any unnecessary code.
+
+25. 1. Add a new property called currentDiceScore to each character's 
+    data and initialise it to an empty array.
+    2. Rewrite the getDiceHtml method so it updates currentDiceScore 
+    with the values returned by getDiceRollArray.
+
+26. 1. In the getDiceHtml method, map over currentDiceScore 
+    to return this string of html template for each element:
+    <div class="dice">${num}</div>`. Save this new array
+    to diceArray.
+    2. Modify the attack() function in index.js to get our 
+    app working again.
+
+27. 1. Ceate a new method inside Character called "takeDamage".
+    2. For now, have the method log out the name of the damaged character
+    and phrase "is damaged".
+    3. In index.js, find the attack() function and call takeDamage
+    for each character inside that function. 
+
+28. 1. Think what data we need to pass to our new
+    takeDamage method.
+    2. Add that data as an argument each time we call
+    takeDamage below.
+    3. In the takeDamage method, take in the data as a 
+    parameter called 'attackScoreArray' and log it out.
+I have used the .reduce method to sum the damage taken
+
+29. 1. In the takeDamage method, use what you have just learned
+    to reduce attackScoreArray to a single number.
+    2. Store that number in a const called totalAttackScore
+    3. Decrement the health score by totalAttackScore
+
+30. 1. Add code to takeDamage so that when the character reaches 
+    zero heath, they stay at zero health and don't drop below 
+    zero.
+31. 1. Add a line of code inside the body of the if statement
+    in the takeDamage method which will give the character a 
+    new boolean "dead" when health reaches zero. It can be initialised with "true".
+    2. For now, log out that boolean when the character's 
+    health reaches zero.
+
+32. 1. Inside attack(), check if either character is dead.
+    If they are, call a new function called endGame().
+    2. Set up the new function endGame() and have it 
+    log out "the game is over".
+
+33. 1. Inside endGame(), create a const called endMessage. 
+    2. Figure out how to set endMessage to say either "The 
+    Wizard Wins", "The Orc is Victorious", or "No victors - 
+    all creatures are dead", depending on the health scores 
+    of the characters.
+    3. Log out endMessage
+
+34. 1. Create a second const in endGame called endEmoji.
+    2. Figure out how to set it to hold the emoji "🔮" if the 
+    wizard wins, and "☠️" if the orc wins. If both characters 
+    are dead use "☠️".
+    3. Finally, take the html template string below render it 
+    to the screen so it replaces everything else when the game 
+    is over.
+    `<div class="end-game">
+            <h2>Game Over</h2>
+            <h3>${endMessage}/h3>
+            <p class="end-emoji">${endEmoji}</p>
+        </div>` 
+
+35. 1. In the getDiceHtml method, there is an anonymous function 
+    being used as an inline callback function. Replace it with an 
+    arrow function.
+    2. Do the same for the anonymous function in the takeDamage 
+    method.
+    3. Try to end up with the least amount of code possible!
+
+36. 1. Create a property called maxHealth INSIDE Character that 
+    stores the maximum health a character can have.
+    2. Create an arrow function called getPercentage OUTSIDE 
+    Character which takes two parameters, remainingHealth and 
+    maximumHealth. getPercentage should return the % of 
+    maximumHealth that is remaining.
+    3. To test, call getPercentage from within the takeDamage method
+    and log out the result. 
+
+37. 1. Set up a new method called getHealthBarHtml
+    2. Create a const called "percent" and set it equals to the 
+    returned value from our getPercentage function (think what 
+    arguments you want to pass in).
+    3. For now, just log out the value of the new const "percent". 
+    4. Down in the getCharacterHtml method, set up a const
+    called healthBar and set it equal to the returned value
+    of the getHealthBarHtml method.
+
+38. 1. Instead of just logging the percent, getHealthBarHtml 
+    needs to return this string of html:
+    `<div class="health-bar-outer">
+        <div class="health-bar-inner *YOUR CODE HERE* " 
+            style="width: *YOUR CODE HERE* %;">
+        </div>
+    </div>`
+    2. You need to make some changes to that string of HTML.
+    2a. If the amount of health left is 25% or lower, add the class 
+    "danger" to the div with the class "health-bar-inner".
+    2b. The width of that div should be the % health remaining. 
+    3. Be sure to add the healthBar variable to the string of HTML
+    rendered by getCharacterHtml.
+
+39. 1. Create a function called getNewMonster.
+    2. Write logic inside the function that takes the first 
+    monster from monstersArray and extracts that monster's 
+    data from characterData.
+    3. Save that data to a new const called nextMonsterData.
+    4. add to data     
+    demon: {
+        name: "Demon",
+        avatar: "images/demon.png",
+        health: 25,
+        diceCount: 2,
+        currentDiceScore: []
+    },
+    goblin: {
+        name: "Goblin",
+        avatar: "images/goblin.png",
+        health: 20,
+        diceCount: 3,
+        currentDiceScore: []
+    }
+    5. create let monstersArray = ["orc", "demon", "goblin"];
+
+40. 1. Make it so getNewMonster returns a new instance of Character. Think
+    what argument you should be passing. If there are no more monsters in the 
+    array, getNewMonster should return an empty object {}.
+    2. Down near the bottom of the file, set a new variable "monster" equal 
+    to our new function getNewMonster.
+    3. Delete any code we no longer need.
+    - The app will still be broken - don't worry for now! or replace "orc" with monster
+
+41. 1. Change the attack function so that when a monster dies, 
+    the next monster replaces it. If there are no more monsters,
+    call endGame(). 
+    2. Make sure that endGame() still gets called if the wizard
+    is killed.
+
+42. 1. Add a pause of 1 second between a monster dying and
+    another monster taking it's place.
+    2. Add a pause of 1.5 seconds between the last monster 
+    or the wizard dying, and the endMessage being displayed.
+
+43. 1. Disable the user's ability to attack when a monster dies.
+    2. Reneable the user's ability to attack when a new monster
+    loads.
+    3. When the game is over, disable the user's ability to attack.
+
+44.Tidy up!
+
+45.Convert the constructor function to a class === enjoy :0
+
+
+
+
